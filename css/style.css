@@ -1,0 +1,471 @@
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#0f0f0f;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    text-align:center;
+}
+
+/* Landing */
+body.home-page{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+}
+.container{
+    max-width:900px;
+    padding:40px;
+}
+
+.logo img{
+    max-width:220px;
+    width:100%;
+    margin-bottom:30px;
+}
+
+.slogan{
+    color:#c5ff00;
+    font-size:1rem;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    margin-bottom:15px;
+}
+
+.brand{
+    font-size:4rem;
+    font-weight:900;
+    letter-spacing:3px;
+    margin-bottom:20px;
+}
+
+.tagline{
+    font-size:1.8rem;
+    margin-bottom:25px;
+}
+
+.description{
+    color:#cccccc;
+    line-height:1.7;
+    margin-bottom:40px;
+    font-size:1.1rem;
+    max-width:700px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.coming-soon{
+    border:2px solid #c5ff00;
+    display:inline-block;
+    padding:15px 30px;
+    border-radius:50px;
+    font-weight:bold;
+}
+
+.socials{
+    margin-top:40px;
+}
+
+.contact-button{
+    display:inline-block;
+    margin-top:20px;
+    padding:12px 24px;
+    border:2px solid #c5ff00;
+    border-radius:30px;
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.contact-button:hover{
+    background:#c5ff00;
+    color:black;
+}
+
+.social-icon{
+    width:32px;
+    height:32px;
+    fill:white;
+    transition:0.3s;
+}
+
+.social-icon:hover{
+    transform:scale(1.15);
+}
+
+.email{
+    margin-top:18px;
+    color:#cccccc;
+    font-size:0.95rem;
+    letter-spacing:1px;
+}
+
+@media (max-width:768px){
+
+    .brand{
+        font-size:2.8rem;
+    }
+
+    .tagline{
+        font-size:1.3rem;
+    }
+
+    .description{
+        font-size:1rem;
+    }
+
+    .logo img{
+        max-width:180px;
+    }
+}
+.instagram-link{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:20px;
+    text-decoration:none;
+}
+
+.instagram-link img{
+    width:32px;
+    height:32px;
+    filter: brightness(0) invert(1);
+    transition:0.3s;
+}
+
+.instagram-link img:hover{
+    opacity:0.7;
+}
+
+.contact-email{
+    color:#cccccc;
+    margin-bottom:20px;
+    font-size:0.95rem;
+    letter-spacing:1px;
+}
+
+
+.instagram-text{
+    color:white;
+    font-size:0.95rem;
+    letter-spacing:1px;
+    transition:0.3s;
+}
+
+.instagram-link:hover .instagram-text{
+    opacity:0.7;
+}
+
+/* ==========================
+   PRIVACY POLICY
+========================== */
+
+.legal-container{
+    max-width:900px;
+    margin:0 auto;
+    padding:60px 40px;
+}
+
+.page-title{
+    text-align:center;
+    font-size:3rem;
+    font-weight:900;
+    letter-spacing:2px;
+    margin-bottom:10px;
+}
+
+.page-subtitle{
+    text-align:center;
+    color:#c5ff00;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    margin-bottom:50px;
+}
+
+.section{
+    margin-bottom:40px;
+    text-align:left;
+}
+
+.section h2{
+    color:#c5ff00;
+    font-size:1.2rem;
+    margin-bottom:15px;
+}
+
+.section p,
+.section li{
+    color:#cccccc;
+    line-height:1.8;
+}
+
+.section ul{
+    padding-left:20px;
+}
+
+.back-button{
+    display:inline-block;
+    margin-top:30px;
+    padding:12px 24px;
+    border:2px solid #c5ff00;
+    border-radius:30px;
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.back-button:hover{
+    background:#c5ff00;
+    color:black;
+}
+
+.footer-note{
+    margin-top:60px;
+    color:#777;
+    font-size:0.9rem;
+    text-align:center;
+}
+
+@media (max-width:768px){
+
+    .page-title{
+        font-size:2.2rem;
+    }
+
+    .legal-container{
+        padding:40px 25px;
+    }
+
+}
+
+.legal-links{
+    margin-top:10px;
+    margin-bottom:20px;
+}
+
+.legal-links a{
+    color:#888;
+    text-decoration:none;
+    font-size:0.9rem;
+    transition:0.3s;
+}
+
+.legal-links a:hover{
+    color:#c5ff00;
+}
+
+/* ==========================
+   NUEVA VENTANA MODAL INTERACTIVA
+========================== */
+
+/* Botón que reemplaza a .coming-soon */
+.coming-soon-btn {
+    background: transparent;
+    color: white;
+    border: 2px solid #c5ff00;
+    display: inline-block;
+    padding: 15px 35px;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: 0.3s ease;
+}
+
+.coming-soon-btn:hover {
+    background: #c5ff00;
+    color: #0f0f0f;
+    box-shadow: 0 0 15px rgba(197, 255, 0, 0.4);
+}
+
+/* El fondo oscurecido y desenfocado */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    z-index: 9999;
+}
+
+/* Estado activo de la modal */
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* La tarjeta del formulario */
+.modal-card {
+    background: #161616;
+    border: 1px solid rgba(197, 255, 0, 0.3);
+    padding: 45px 40px;
+    border-radius: 12px;
+    max-width: 420px;
+    width: 90%;
+    position: relative;
+    text-align: center;
+    transform: translateY(-20px);
+    transition: transform 0.4s ease;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+.modal-overlay.active .modal-card {
+    transform: translateY(0);
+}
+
+/* Botón cerrar (X) */
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: 0.3s;
+    line-height: 1;
+}
+
+.close-btn:hover {
+    color: #c5ff00;
+}
+
+.modal-card h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.8rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.modal-card p {
+    color: #cccccc;
+    font-size: 0.95rem;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+/* Elementos del Formulario */
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.modal-form input[type="email"] {
+    background: #222;
+    border: 1px solid #333;
+    padding: 14px 20px;
+    border-radius: 6px;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+    transition: 0.3s;
+}
+
+.modal-form input[type="email"]:focus {
+    border-color: #c5ff00;
+    background: #262626;
+}
+
+.submit-btn {
+    background: #c5ff00;
+    color: black;
+    border: none;
+    padding: 14px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.submit-btn:hover {
+    background: #b2e600;
+    box-shadow: 0 5px 15px rgba(197, 255, 0, 0.2);
+}
+
+/* Alineación de los campos Email + Fecha */
+.form-row {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+}
+
+/* Forzar que todos los inputs mantengan el diseño de tu marca */
+.modal-form input[type="text"],
+.modal-form input[type="number"],
+.modal-form input[type="date"] {
+    background: #222;
+    border: 1px solid #333;
+    padding: 14px 20px;
+    border-radius: 6px;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+    transition: 0.3s;
+    font-family: Arial, sans-serif;
+}
+
+.modal-form input[type="text"]:focus,
+.modal-form input[type="number"]:focus,
+.modal-form input[type="date"]:focus {
+    border-color: #c5ff00;
+    background: #262626;
+}
+
+@media (max-width: 480px) {
+    .form-row {
+        flex-direction: column;
+    }
+}
+
+/* ==========================
+   CORRECCIÓN TEXTO GRIS INPUT DATE
+========================== */
+
+/* 1. Forzar el texto interno del formato (dd/mm/aaaa) a gris tenue por defecto */
+.modal-form input[type="date"]::-webkit-datetime-edit,
+.modal-form input[type="date"]::-webkit-datetime-edit-text,
+.modal-form input[type="date"]::-webkit-datetime-edit-month-field,
+.modal-form input[type="date"]::-webkit-datetime-edit-day-field,
+.modal-form input[type="date"]::-webkit-datetime-edit-year-field {
+    color: rgba(255, 255, 255, 0.35) !important;
+}
+
+/* 2. Forzar el icono del calendario nativo a un gris de opacidad baja */
+.modal-form input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0.35 !important;
+    filter: invert(1);
+    cursor: pointer;
+}
+
+/* 3. Cuando el valor cambie a una fecha elegida válida, el texto pasa a blanco brillante */
+.modal-form input[type="date"]:valid::-webkit-datetime-edit,
+.modal-form input[type="date"]:valid::-webkit-datetime-edit-text,
+.modal-form input[type="date"]:valid::-webkit-datetime-edit-month-field,
+.modal-form input[type="date"]:valid::-webkit-datetime-edit-day-field,
+.modal-form input[type="date"]:valid::-webkit-datetime-edit-year-field {
+    color: #ffffff !important;
+}
+
+/* Compatibilidad extra de placeholder en Firefox */
+.modal-form input[type="date"]::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+}
