@@ -43,10 +43,10 @@
 	    </a>
 
     	<div class="contact-email">
-        	hello@tennisclaw.com
+        	hello@tennisclaw.es
     	</div>
 
-    	<a href="mailto:hello@tennisclaw.com" class="contact-button">
+    	<a href="mailto:hello@tennisclaw.es" class="contact-button">
         	Contact Us
     	</a>
 
@@ -78,13 +78,19 @@
 </div>
 
 <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
 <script>
+    // Inicializar EmailJS
+    emailjs.init({
+        publicKey: "f8GKPWjpBdOqSwA4-"
+    });
+
     const modal = document.getElementById('customModal');
     const openBtn = document.getElementById('openModalBtn');
     const closeBtn = document.getElementById('closeModalBtn');
-    
-    const modalForm = document.getElementById('my-form'); // Actualizado al nuevo ID del formulario
+
+    const modalForm = document.getElementById('my-form');
     const modalTitle = modal.querySelector('h3');
     const modalText = modal.querySelector('p');
 
@@ -92,21 +98,49 @@
     const originalText = modalText.textContent;
 
     // INICIALIZACIÓN DE FORMSPREE
-    window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
-    formspree('initForm', { 
-        formElement: '#my-form', 
+    window.formspree = window.formspree || function () {
+        (formspree.q = formspree.q || []).push(arguments);
+    };
+
+    formspree('initForm', {
+        formElement: '#my-form',
         formId: 'xpqgqjej',
-        // Capturamos el envío exitoso para ejecutar tu animación y mensaje personalizado de marca
+
         onSuccess: function() {
+
             const nameSubmitted = document.getElementById('modalName').value;
             const emailSubmitted = document.getElementById('modalEmail').value;
+
+            // Enviar email de bienvenida
+            emailjs.send(
+                "service_hqt0gig",
+                "template_q5vkema",
+                {
+                    to_name: nameSubmitted,
+                    to_email: emailSubmitted
+                }
+            )
+            .then(() => {
+                console.log("Welcome email sent");
+            })
+            .catch((error) => {
+                console.error("EmailJS error:", error);
+            });
 
             // Ocultamos el formulario
             modalForm.style.display = 'none';
 
             // Insertamos tu pantalla de éxito personalizada
             modalTitle.textContent = `THANK YOU, ${nameSubmitted.toUpperCase()}!`;
-            modalText.innerHTML = `You're officially on the list with <span style="color: #c5ff00; font-weight: bold;">${emailSubmitted}</span>.<br>We'll let you know as soon as we launch.`;
+
+            modalText.innerHTML = `
+                You're officially on the list with
+                <span style="color: #c5ff00; font-weight: bold;">
+                    ${emailSubmitted}
+                </span>.
+                <br>
+                We'll let you know as soon as we launch.
+            `;
         }
     });
 
@@ -119,7 +153,7 @@
     function resetModal() {
         modal.classList.remove('active');
         document.body.style.overflow = '';
-        
+
         setTimeout(() => {
             modalForm.style.display = 'flex';
             modalTitle.textContent = originalTitle;
@@ -136,6 +170,7 @@
         }
     });
 </script>
+
 
 </body>
 </html>
