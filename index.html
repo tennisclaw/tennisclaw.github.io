@@ -78,13 +78,8 @@
 </div>
 
 <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
 <script>
-    // Inicializar EmailJS
-    emailjs.init({
-        publicKey: "f8GKPWjpBdOqSwA4-"
-    });
 
     const modal = document.getElementById('customModal');
     const openBtn = document.getElementById('openModalBtn');
@@ -112,21 +107,19 @@
             const emailSubmitted = document.getElementById('modalEmail').value;
 
             // Enviar email de bienvenida
-            emailjs.send(
-                "service_hqt0gig",
-                "template_q5vkema",
-                {
-                    to_name: nameSubmitted,
-                    to_email: emailSubmitted
-                },
-				"f8GKPWjpBdOqSwA4-"
-            )
-            .then(() => {
-                console.log("Welcome email sent");
-            })
-            .catch((error) => {
-                console.error("EmailJS error:", error);
-            });
+            fetch("https://tennisclaw-mail.tennisclaw.workers.dev/", {
+    		method: "POST",
+    		headers: {
+        	"Content-Type": "application/json"
+    		},
+    		body: JSON.stringify({
+        	name: nameSubmitted,
+        	email: emailSubmitted
+    	})
+	})
+	.then(r => r.json())
+	.then(console.log)
+	.catch(console.error);
 
             // Ocultamos el formulario
             modalForm.style.display = 'none';
