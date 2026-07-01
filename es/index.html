@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TennisClaw | Quiet Confidence</title>
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml">
+<meta name="description"
+      content="Ropa premium de tenis inspirada en el rendimiento, el estilo y la cultura del tenis.">
+<link rel="canonical" href="https://tennisclaw.es/es/">
+    </head>
+<link rel="alternate" hreflang="es" href="https://tennisclaw.es/es/">
+<link rel="alternate" hreflang="en" href="https://tennisclaw.es/en/">
+<link rel="alternate" hreflang="x-default" href="https://tennisclaw.es/">
+    <body class="home-page">
+
+<div class="container">
+
+    <div class="logo">
+        <img src="../assets/images/T_CLAW_LOGO_W.png" alt="Logotipo de TennisClaw">
+    </div>
+
+    <div class="slogan">
+        QUIET CONFIDENCE
+    </div>
+
+    <div class="brand">
+        TENNISCLAW
+    </div>
+
+    <div class="tagline">
+        Rendimiento • Estilo • Cultura
+    </div>
+
+    <div class="description">
+        Inspirado en la cultura, el estilo y la energía del tenis actual.
+        Ropa de alto rendimiento diseñada para jugadores que dejan que su juego hable por ellos.
+    </div>
+
+    <button class="coming-soon-btn" id="openModalBtn">
+        ACCESO ANTICIPADO
+    </button>
+
+    <div class="socials">
+
+        <a href="https://www.instagram.com/tennisclaw/" target="_blank" rel="noopener" class="instagram-link">
+            <img src="../assets/images/instagram.svg" alt="Instagram">
+            <span class="instagram-text">@tennisclaw</span>
+        </a>
+
+        <div class="contact-email">
+            hello@tennisclaw.es
+        </div>
+
+        <a href="mailto:hello@tennisclaw.es" class="contact-button">
+            Contáctanos
+        </a>
+
+        <div class="legal-links">
+            <a href="politica-privacidad.html">Política de privacidad</a>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="modal-overlay" id="customModal">
+    <div class="modal-card">
+        <button class="close-btn" id="closeModalBtn">&times;</button>
+
+        <h3>ÚNETE AL CLUB</h3>
+
+        <p>
+            Sé el primero en enterarte cuando lancemos la colección.
+        </p>
+
+        <form class="modal-form" id="my-form">
+            <input
+                type="text"
+                id="modalName"
+                name="name"
+                placeholder="Tu nombre"
+                required
+                data-fs-field
+            >
+
+            <div class="form-row">
+                <input
+                    type="email"
+                    id="modalEmail"
+                    name="email"
+                    placeholder="Tu correo electrónico"
+                    required
+                    style="flex: 2;"
+                >
+
+                <input
+                    type="date"
+                    id="modalBirthdate"
+                    name="birthdate"
+                    required
+                    style="flex: 1.5;"
+                >
+            </div>
+
+            <button
+                type="submit"
+                class="submit-btn"
+                data-fs-submit-btn
+            >
+                Solicitar acceso
+            </button>
+        </form>
+    </div>
+</div>
+
+<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+
+<script>
+
+    const modal = document.getElementById('customModal');
+    const openBtn = document.getElementById('openModalBtn');
+    const closeBtn = document.getElementById('closeModalBtn');
+
+    const modalForm = document.getElementById('my-form');
+    const modalTitle = modal.querySelector('h3');
+    const modalText = modal.querySelector('p');
+
+    const originalTitle = modalTitle.textContent;
+    const originalText = modalText.textContent;
+
+    // INICIALIZACIÓN DE FORMSPREE
+    window.formspree = window.formspree || function () {
+        (formspree.q = formspree.q || []).push(arguments);
+    };
+
+    formspree('initForm', {
+        formElement: '#my-form',
+        formId: 'xpqgqjej',
+
+        onSuccess: function() {
+
+            const nameSubmitted = document.getElementById('modalName').value;
+            const emailSubmitted = document.getElementById('modalEmail').value;
+
+            // Enviar email de bienvenida
+            fetch("https://tennisclaw-mail.tennisclaw.workers.dev/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    name: nameSubmitted,
+                    email: emailSubmitted
+                })
+            })
+            .then(r => r.json())
+            .then(console.log)
+            .catch(console.error);
+
+            // Ocultamos el formulario
+            modalForm.style.display = 'none';
+
+            // Pantalla de éxito
+            modalTitle.textContent = `¡GRACIAS, ${nameSubmitted.toUpperCase()}!`;
+
+            modalText.innerHTML = `
+                Ya formas parte de la lista con
+                <span style="color: #c5ff00; font-weight: bold;">
+                    ${emailSubmitted}
+                </span>.
+                <br>
+                Te avisaremos en cuanto lancemos la colección.
+            `;
+        }
+    });
+
+    // Controladores de la ventana modal
+    openBtn.addEventListener('click', () => {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+
+    function resetModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+
+        setTimeout(() => {
+            modalForm.style.display = 'flex';
+            modalTitle.textContent = originalTitle;
+            modalText.textContent = originalText;
+            modalForm.reset();
+        }, 400);
+    }
+
+    closeBtn.addEventListener('click', resetModal);
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            resetModal();
+        }
+    });
+
+</script>
+
+</body>
+</html>

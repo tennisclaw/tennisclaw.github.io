@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TennisClaw | Quiet Confidence</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+	<link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml">
+    <meta name="description"
+      content="Premium tennis apparel inspired by performance, style and culture.">
+    <link rel="canonical" href="https://tennisclaw.es/en/">
+    <link rel="alternate" hreflang="en" href="https://tennisclaw.es/en/">
+    <link rel="alternate" hreflang="es" href="https://tennisclaw.es/es/">
+    <link rel="alternate" hreflang="x-default" href="https://tennisclaw.es/">    
+</head>
+<body class="home-page">
+
+<div class="container">
+
+    <div class="logo">
+        <img src="../assets/images/T_CLAW_LOGO_W.png" alt="TennisClaw Logo">
+    </div>
+
+    <div class="slogan">
+        QUIET CONFIDENCE
+    </div>
+
+    <div class="brand">
+        TENNISCLAW
+    </div>
+
+    <div class="tagline">
+        Performance • Style • Culture
+    </div>
+
+    <div class="description">
+        Inspired by the culture, style and energy of today's game.
+        Performance-driven apparel designed for players who let their game speak.
+    </div>
+
+    <button class="coming-soon-btn" id="openModalBtn">
+        GET EARLY ACCESS
+    </button>
+
+    <div class="socials">
+
+    	<a href="https://www.instagram.com/tennisclaw/" target="_blank" rel="noopener" class="instagram-link">
+    		<img src="../assets/images/instagram.svg" alt="Instagram">
+    		<span class="instagram-text">@tennisclaw</span>
+	    </a>
+
+    	<div class="contact-email">
+        	hello@tennisclaw.es
+    	</div>
+
+    	<a href="mailto:hello@tennisclaw.es" class="contact-button">
+        	Contact Us
+    	</a>
+
+	    <div class="legal-links">
+        	<a href="privacy-policy.html">Privacy Policy</a>
+    	</div>
+
+    </div>
+
+</div>
+
+<div class="modal-overlay" id="customModal">
+    <div class="modal-card">
+        <button class="close-btn" id="closeModalBtn">&times;</button>
+        <h3>JOIN THE CLUB</h3>
+        <p>Be the first to know when the collection drops.</p>
+        
+        <form class="modal-form" id="my-form">
+            <input type="text" id="modalName" name="name" placeholder="Your name" required data-fs-field>
+            
+            <div class="form-row">
+                <input type="email" id="modalEmail" name="email" placeholder="Your email address" required style="flex: 2;">
+                <input type="date" id="modalBirthdate" name="birthdate" required style="flex: 1.5;">
+            </div>
+            
+            <button type="submit" class="submit-btn" data-fs-submit-btn>Request Access</button>
+        </form>
+    </div>
+</div>
+
+<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+
+<script>
+
+    const modal = document.getElementById('customModal');
+    const openBtn = document.getElementById('openModalBtn');
+    const closeBtn = document.getElementById('closeModalBtn');
+
+    const modalForm = document.getElementById('my-form');
+    const modalTitle = modal.querySelector('h3');
+    const modalText = modal.querySelector('p');
+
+    const originalTitle = modalTitle.textContent;
+    const originalText = modalText.textContent;
+
+    // INICIALIZACIÓN DE FORMSPREE
+    window.formspree = window.formspree || function () {
+        (formspree.q = formspree.q || []).push(arguments);
+    };
+
+    formspree('initForm', {
+        formElement: '#my-form',
+        formId: 'xpqgqjej',
+
+        onSuccess: function() {
+
+            const nameSubmitted = document.getElementById('modalName').value;
+            const emailSubmitted = document.getElementById('modalEmail').value;
+
+            // Enviar email de bienvenida
+            fetch("https://tennisclaw-mail.tennisclaw.workers.dev/", {
+    		method: "POST",
+    		headers: {
+        	"Content-Type": "application/json"
+    		},
+    		body: JSON.stringify({
+        	name: nameSubmitted,
+        	email: emailSubmitted
+    	})
+	})
+	.then(r => r.json())
+	.then(console.log)
+	.catch(console.error);
+
+            // Ocultamos el formulario
+            modalForm.style.display = 'none';
+
+            // Insertamos tu pantalla de éxito personalizada
+            modalTitle.textContent = `THANK YOU, ${nameSubmitted.toUpperCase()}!`;
+
+            modalText.innerHTML = `
+                You're officially on the list with
+                <span style="color: #c5ff00; font-weight: bold;">
+                    ${emailSubmitted}
+                </span>.
+                <br>
+                We'll let you know as soon as we launch.
+            `;
+        }
+    });
+
+    // Controladores de interfaz de la modal
+    openBtn.addEventListener('click', () => {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+
+    function resetModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+
+        setTimeout(() => {
+            modalForm.style.display = 'flex';
+            modalTitle.textContent = originalTitle;
+            modalText.textContent = originalText;
+            modalForm.reset();
+        }, 400);
+    }
+
+    closeBtn.addEventListener('click', resetModal);
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            resetModal();
+        }
+    });
+</script>
+
+
+</body>
+</html>
